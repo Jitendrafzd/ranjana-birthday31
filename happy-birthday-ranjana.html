@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎉 Happy Birthday Ranjana!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: linear-gradient(135deg,#ffecd2,#fcb69f);
+      --fg: #1f2937;
+      --accent: #ff4d6d;
+      --accent2:#7c3aed;
+      --card: rgba(255,255,255,0.75);
+      --glass: rgba(255,255,255,0.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--fg); background:var(--bg); overflow-x:hidden}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.15));backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid rgba(0,0,0,0.5)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px}
+    .brand .logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 45deg, #ff4d6d, #ffd166, #06d6a0, #7c3aed, #ff4d6d); box-shadow:0 8px 24px rgba(0,0,0,.12)}
+    .nav a{font-weight:600;text-decoration:none;color:#111;opacity:.85}
+
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:40px 0}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;}}
+    .card{background:var(--card);border:1px solid rgba(0,0,0,.08);border-radius:24px;padding:28px;box-shadow:0 12px 40px rgba(0,0,0,.09)}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#111;color:#fff;font-size:12px;letter-spacing:.6px}
+    .title{font-size:clamp(28px,4.5vw,54px);margin:12px 0 8px;font-weight:800;line-height:1.05}
+    .subtitle{font-size:clamp(14px,2.5vw,18px);opacity:.8}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{cursor:pointer;border:0;outline:0;border-radius:14px;padding:12px 18px;font-weight:700}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),#ff9a9e);color:#fff;box-shadow:0 10px 24px rgba(255,77,109,.35)}
+    .btn.ghost{background:transparent;border:2px solid rgba(0,0,0,.15)}
+
+    .polaroid{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 20px 40px rgba(0,0,0,.15);transform:rotate(-2deg)}
+    .polaroid img{width:100%;height:100%;object-fit:cover}
+    .tagline{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.6));color:#fff;padding:16px 18px;font-weight:700}
+
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    @media(max-width:600px){.grid{grid-template-columns:repeat(2,1fr)}}
+    .timebox{background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:16px;text-align:center}
+    .timebox .num{font-size:clamp(24px,6vw,42px);font-weight:800}
+    .timebox .lab{font-size:12px;opacity:.75}
+
+    .slider{position:relative;border-radius:22px;overflow:hidden;height:340px}
+    .slides{display:flex;width:100%;height:100%;transition:transform .6s ease}
+    .slides img{width:100%;height:340px;object-fit:cover;flex:0 0 100%}
+    .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:0 12px}
+    .dots button{width:10px;height:10px;border-radius:999px;border:0;background:rgba(255,255,255,.6);cursor:pointer}
+    .dots button.active{background:#fff}
+
+    .wish{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:800px){.wish{grid-template-columns:1fr}}
+    input,textarea{width:100%;padding:12px 14px;border-radius:14px;border:1px solid rgba(0,0,0,.12);font:inherit;background:#fff}
+    textarea{min-height:110px;resize:vertical}
+
+    .balloons{pointer-events:none;position:fixed;inset:0;overflow:hidden;z-index:0}
+    .balloons span{position:absolute;bottom:-120px;width:50px;height:70px;border-radius:50%;filter:drop-shadow(0 8px 10px rgba(0,0,0,.2));animation:float var(--dur) linear infinite;opacity:.9}
+    .balloons span::after{content:"";position:absolute;bottom:-18px;left:50%;width:2px;height:22px;background:#444;transform:translateX(-50%)}
+    @keyframes float{to{transform:translateY(-120vh) translateX(var(--x,0))}}
+
+    canvas#fw{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+    footer{padding:28px 0;text-align:center;opacity:.7}
+    .tiny{font-size:12px}
+
+    /* Animated Heart Name Badge */
+    .love-badge{
+      position:absolute;top:-16px;right:-12px;background:rgba(255,255,255,.85);border:1px solid rgba(0,0,0,.08);padding:10px 14px;border-radius:999px;display:flex;align-items:center;gap:8px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .heart{width:16px;height:16px;position:relative;transform:rotate(-45deg);animation:pulse 1.2s infinite}
+    .heart, .heart::before, .heart::after{background:var(--accent)}
+    .heart::before, .heart::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%}
+    .heart::before{top:-8px;left:0}
+    .heart::after{left:8px;top:0}
+    @keyframes pulse{0%,100%{transform:scale(1) rotate(-45deg)}50%{transform:scale(1.15) rotate(-45deg)}}
+
+    /* Floating tiny hearts */
+    .hearts{pointer-events:none;position:fixed;inset:0;z-index:2}
+    .hearts span{position:absolute;font-size:18px;animation:rise var(--t) linear forwards;opacity:.9;filter:drop-shadow(0 6px 10px rgba(0,0,0,.2))}
+    @keyframes rise{0%{transform:translateY(0) scale(1);opacity:.9}80%{opacity:.9}100%{transform:translateY(-120vh) scale(1.4);opacity:0}}
+
+    /* Upload button styling */
+    .uploader{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+    .uploader input[type="file"]{display:none}
+    .uploader label{cursor:pointer;padding:10px 14px;border-radius:12px;border:2px dashed rgba(0,0,0,.2);background:rgba(255,255,255,.6);font-weight:700}
+    .uploader small{opacity:.7}
+  </style>
+</head>
+<body>
+  <canvas id="fw"></canvas>
+  <div class="balloons" id="balloons"></div>
+  <div class="hearts" id="hearts"></div>
+
+  <header>
+    <div class="container nav">
+      <div class="brand"><div class="logo"></div> <span>Happy Birthday Ranjana</span></div>
+      <nav style="display:flex;gap:16px">
+        <a href="#count">Countdown</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#wish">Wish</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="position:relative;z-index:2">
+    <section class="hero">
+      <div class="card" style="position:relative">
+        <div class="love-badge"><span class="heart"></span> RANJANA ❤️</div>
+        <span class="chip">🎂 Special Day • ख़ुशियों भरा लम्हा</span>
+        <h1 class="title">Happy Birthday, Ranjana! 🎉</h1>
+        <p class="subtitle">"Har saans me tum ho, har khushi me tum. Aaj ke din meri saari duaein sirf tumhare naam — may your life glow brighter than a thousand candles." ❤️<br/>दुआ है आपकी हर ख्वाहिश आज और हमेशा पूरी हो ✨</p>
+        <div class="cta">
+          <button class="btn primary" id="confettiBtn">Celebrate 🥳</button>
+          <button class="btn ghost" id="musicBtn">Play / Pause Music 🎵</button>
+          <a class="btn ghost" href="#count">See Countdown ⏳</a>
+        </div>
+      </div>
+      <div class="polaroid">
+        <img src="https://images.unsplash.com/photo-1548372293-36cfb2d2b7c8?q=80&w=1200&auto=format&fit=crop" alt="Birthday"/>
+        <div class="tagline">Let the celebration begin!</div>
+      </div>
+    </section>
+
+    <section id="count" class="card" style="margin-top:10px">
+      <h2 style="margin:0 0 6px">⏳ Countdown to Big Day</h2>
+      <p class="subtitle" style="margin-top:0">31 January ki agli saalgirah tak kitna time bacha hai – neeche dekhein.</p>
+      <div class="grid" id="timer">
+        <div class="timebox"><div class="num" id="d">--</div><div class="lab">Days</div></div>
+        <div class="timebox"><div class="num" id="h">--</div><div class="lab">Hours</div></div>
+        <div class="timebox"><div class="num" id="m">--</div><div class="lab">Minutes</div></div>
+        <div class="timebox"><div class="num" id="s">--</div><div class="lab">Seconds</div></div>
+      </div>
+    </section>
+
+    <section id="gallery" class="card" style="margin-top:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+        <h2 style="margin:0 0 10px">📸 Memories Gallery</h2>
+        <div class="uploader">
+          <input id="imgInput" type="file" accept="image/*" multiple />
+          <label for="imgInput">➕ Add Your Photos</label>
+          <small>(Select 3–10 images)</small>
+        </div>
+      </div>
+      <div class="slider" aria-label="Image slider">
+        <div class="slides" id="slides">
+          <!-- Default placeholders; will be replaced when you upload -->
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="Cake"/>
+          <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?q=80&w=1600&auto=format&fit=crop" alt="Balloons"/>
+          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop" alt="Friends"/>
+          <img src="https://images.unsplash.com/photo-1558981285-6f0c94958bb6?q=80&w=1600&auto=format&fit=crop" alt="Candles"/>
+        </div>
+        <div class="dots" id="dots"></div>
+      </div>
+    </section>
+
+    <section id="wish" class="card" style="margin-top:16px">
+      <h2 style="margin:0 0 10px">💌 Send Your Wish</h2>
+      <p class="subtitle" style="margin-top:0">Type a sweet message and share on WhatsApp in one tap. अपना नाम लिखें और दिल से दुआ भेजें ❤</p>
+      <div class="wish">
+        <input id="wName" placeholder="Your name / आपका नाम"/>
+        <input id="wTo" value="Ranjana" placeholder="Birthday person"/>
+        <textarea id="wMsg" placeholder="Write your lovely wish here..."></textarea>
+      </div>
+      <div class="cta" style="margin-top:14px">
+        <a id="waLink" class="btn primary" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <button class="btn ghost" id="copyBtn">Copy Message</button>
+      </div>
+    </section>
+
+    <footer>
+      <div class="tiny">Made with ❤️ for Ranjana’s Birthday • Customize easily (photos, music)</div>
+    </footer>
+  </main>
+
+  <!-- 🎵 Audio: Prefer MP3 if available; otherwise YouTube fallback -->
+  <audio id="music" preload="auto" loop></audio>
+  <div id="yt-audio" style="position:fixed; left:-9999px; width:1px; height:1px;"></div>
+  <!-- Ambient light canvas (beat-synced) -->
+  <canvas id="lights"></canvas>
+
+  <script>
+    // ======= CONFIG =======
+    const BDAY_NAME = "Ranjana";
+    const BDAY_MONTH = 1; // January
+    const BDAY_DATE  = 31;
+    const YT_VIDEO_ID = "2Ru_AM1D2Ec"; // YouTube fallback if no MP3
+    // =======================
+
+    document.getElementById('wTo').value = BDAY_NAME;
+
+    // Countdown
+    function nextBirthdayDate(month, date){
+      const now = new Date();
+      const y = now.getFullYear();
+      let target = new Date(y, month-1, date, 0,0,0,0);
+      if(target < now){ target = new Date(y+1, month-1, date, 0,0,0,0); }
+      return target;
+    }
+    const target = nextBirthdayDate(BDAY_MONTH, BDAY_DATE);
+    const dEl = document.getElementById('d'), hEl = document.getElementById('h'), mEl = document.getElementById('m'), sEl = document.getElementById('s');
+    function tick(){
+      const now = new Date();
+      const diff = Math.max(0, target - now);
+      const s = Math.floor(diff/1000);
+      const d = Math.floor(s/86400);
+      const h = Math.floor((s%86400)/3600);
+      const m = Math.floor((s%3600)/60);
+      const ss = s%60;
+      dEl.textContent = d; hEl.textContent = h; mEl.textContent = m; sEl.textContent = ss;
+    }
+    tick(); setInterval(tick, 1000);
+
+    // Slider
+    const slides = document.getElementById('slides');
+    const dotsWrap = document.getElementById('dots');
+    function rebuildDots(){
+      dotsWrap.innerHTML = "";
+      const total = slides.children.length;
+      for(let i=0;i<total;i++){ const b=document.createElement('button'); b.addEventListener('click',()=>goTo(i)); dotsWrap.appendChild(b); }
+    }
+    let idx = 0, autoInt;
+    function goTo(i){
+      const total = slides.children.length;
+      idx = (i+total)%total;
+      slides.style.transform = `translateX(-${idx*100}%)`;
+      [...dotsWrap.children].forEach((d,j)=>d.classList.toggle('active', j===idx));
+    }
+    function startAuto(){
+      clearInterval(autoInt);
+      autoInt = setInterval(()=>goTo(idx+1), 3500);
+    }
+    rebuildDots(); goTo(0); startAuto();
+
+    // Image Uploader: add your photos to slider
+    const imgInput = document.getElementById('imgInput');
+    imgInput.addEventListener('change', async (e)=>{
+      const files = [...e.target.files].filter(f=>f.type.startsWith('image/')).slice(0,10);
+      if(!files.length) return;
+      slides.innerHTML = "";
+      for(const file of files){
+        const url = await readAsDataURL(file);
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = file.name;
+        slides.appendChild(img);
+      }
+      rebuildDots(); goTo(0); startAuto();
+    });
+    function readAsDataURL(file){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(file); }); }
+
+    // WhatsApp share + copy
+    function buildWish(){
+      const by = document.getElementById('wName').value || 'A friend';
+      const to = document.getElementById('wTo').value || BDAY_NAME;
+      const msg = document.getElementById('wMsg').value || 'Wishing you a day filled with love, laughter and surprises!';
+      return `Happy Birthday, ${to}! 🎉\n\n${msg}\n\n— ${by}`;
+    }
+    const wa = document.getElementById('waLink');
+    function updateWA(){ const text = encodeURIComponent(buildWish()); wa.href = `https://wa.me/?text=${text}`; }
+    ['wName','wTo','wMsg'].forEach(id => document.getElementById(id).addEventListener('input', updateWA));
+    updateWA();
+    document.getElementById('copyBtn').addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText(buildWish());
+        alert('Message copied! अब WhatsApp/Instagram पर पेस्ट करें ✨');
+      }catch(e){ alert('Copy not supported on this browser.'); }
+    });
+
+    // Fireworks
+    const cvs = document.getElementById('fw');
+    const ctx = cvs.getContext('2d');
+    let W,H; function resize(){ W=cvs.width=innerWidth; H=cvs.height=innerHeight; } resize(); addEventListener('resize',resize);
+    let particles=[];
+    function popFireworks(){
+      for(let i=0;i<120;i++){
+        particles.push({x:W/2,y:H/3+Math.random()*60, vx:(Math.random()-0.5)*6, vy:(Math.random()-0.8)*6, a:1, r:2+Math.random()*2});
+      }
+    }
+    function frame(){
+      ctx.clearRect(0,0,W,H);
+      particles.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy; p.vy+=0.06; p.a-=0.01;
+        ctx.globalAlpha = Math.max(0,p.a);
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle = `hsl(${Math.random()*360},90%,60%)`; ctx.fill();
+      });
+      particles = particles.filter(p=>p.a>0);
+      requestAnimationFrame(frame);
+    }
+    frame();
+
+    // Balloons
+    const balloonWrap = document.getElementById('balloons');
+    function spawnBalloons(){
+      for(let i=0;i<10;i++){
+        const b=document.createElement('span');
+        const hue = Math.floor(Math.random()*360);
+        b.style.left = Math.random()*100 + 'vw';
+        b.style.background = `radial-gradient(circle at 30% 30%, hsla(${hue},90%,70%,1), hsla(${hue},90%,55%,1))`;
+        b.style.setProperty('--dur', (12+Math.random()*10)+'s');
+        b.style.setProperty('--x', (Math.random()*60-30)+'px');
+        balloonWrap.appendChild(b);
+        setTimeout(()=>b.remove(), 22000);
+      }
+    }
+    setInterval(spawnBalloons, 2400); spawnBalloons();
+
+    // Animated floating hearts
+    const hearts = document.getElementById('hearts');
+    function spawnHearts(){
+      for(let i=0;i<6;i++){
+        const h=document.createElement('span');
+        h.textContent = ['❤','💖','💘','💝'][Math.floor(Math.random()*4)];
+        h.style.left = Math.random()*100 + 'vw';
+        h.style.bottom = '-20px';
+        h.style.setProperty('--t', (6+Math.random()*6)+'s');
+        hearts.appendChild(h);
+        setTimeout(()=>h.remove(), 12000);
+      }
+    }
+    setInterval(spawnHearts, 1800); spawnHearts();
+
+    // Music autoplay + beat visualizer with YouTube fallback
+    const music = document.getElementById('music');
+    const musicBtn = document.getElementById('musicBtn');
+
+    // Beat-reactive ambient lights
+    const lights = document.getElementById('lights');
+    const lctx = lights.getContext('2d');
+    function resizeLights(){ lights.width = innerWidth; lights.height = innerHeight; }
+    resizeLights(); addEventListener('resize', resizeLights);
+
+    let audioCtx, analyser, dataArray, srcNode;
+    let playing=false, rafId;
+    let useFakeBeat = true; // default; real beat enabled when we attach WebAudio to <audio>
+
+    async function initAudio(){
+      if(audioCtx) return;
+      audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 1024;
+      const bufferLength = analyser.frequencyBinCount;
+      dataArray = new Uint8_tArray(bufferLength);
+      // We will attach source later depending on MP3 presence
+    }
+
+    function attachMediaElement(el){
+      if(!audioCtx) return;
+      if(srcNode) try{ srcNode.disconnect(); }catch{}
+      srcNode = audioCtx.createMediaElementSource(el);
+      srcNode.connect(analyser); analyser.connect(audioCtx.destination);
+      useFakeBeat = false;
+    }
+
+    function drawLights(){
+      const W = lights.width, H = lights.height;
+      lctx.clearRect(0,0,W,H);
+      let bass = 0.2, energy = 0.2;
+
+      if(!useFakeBeat && analyser){
+        analyser.getByteFrequencyData(dataArray);
+        const bassBins = dataArray.slice(0, 40);
+        bass = bassBins.reduce((a,b)=>a+b,0)/Math.max(1,bassBins.length)/255;
+        energy = dataArray.reduce((a,b)=>a+b,0)/dataArray.length/255;
+      } else {
+        // Fake beat using time (works when only YouTube hidden playback)
+        const t = performance.now()/1000;
+        bass = (Math.sin(t*2*Math.PI*1.2)+1)/4 + (Math.sin(t*2*Math.PI*0.5)+1)/6; // 0..~0.7
+        energy = (Math.sin(t)+1)/4 + 0.25;
+      }
+
+      const glow = Math.min(1, 0.15 + energy*0.85);
+      const grd = lctx.createRadialGradient(W/2, H*0.6, 50, W/2, H*0.6, Math.max(W,H)*0.7);
+      grd.addColorStop(0, `rgba(255, 77, 109, ${0.25+glow*0.35})`);
+      grd.addColorStop(1, `rgba(124, 58, 237, ${0.12+glow*0.28})`);
+      lctx.fillStyle = grd; lctx.fillRect(0,0,W,H);
+      const beams = 8;
+      for(let i=0;i<beams;i++){
+        const angle = (i/beams)*Math.PI*2 + performance.now()/2000;
+        const len = (0.35 + bass*0.65) * Math.max(W,H);
+        const x2 = W/2 + Math.cos(angle)*len;
+        const y2 = H/2 + Math.sin(angle)*len;
+        lctx.beginPath(); lctx.moveTo(W/2, H/2); lctx.lineTo(x2, y2);
+        lctx.strokeStyle = `rgba(255,255,255, ${0.02 + bass*0.2})`;
+        lctx.lineWidth = 6 + bass*30; lctx.stroke();
+      }
+      if(bass > 0.55){ spawnHearts(); }
+      rafId = requestAnimationFrame(drawLights);
+    }
+
+    async function tryPlay(){
+      // Prefer MP3 in <audio> if developer later adds source
+      try{
+        await initAudio();
+      }catch{}
+      if(music.querySelector('source')?.src || music.currentSrc){
+        try{
+          attachMediaElement(music);
+          await music.play();
+        }catch{}
+      } else if(window.ytReady && window.ytPlayer){
+        // YouTube fallback: just play video muted (audio not captured to analyser due to CORS),
+        // we'll run fake beat visualizer.
+        window.ytPlayer.mute();
+        window.ytPlayer.playVideo();
+        useFakeBeat = true;
+      }
+      if(audioCtx && audioCtx.state === 'suspended') try{ await audioCtx.resume(); }catch{}
+      if(!rafId) drawLights();
+    }
+
+    document.addEventListener('DOMContentLoaded', ()=>{ tryPlay(); });
+
+    musicBtn.addEventListener('click', async()=>{
+      try{
+        if(music.querySelector('source')?.src || music.currentSrc){
+          if(!playing){ await tryPlay(); musicBtn.textContent='Pause Music ⏸️'; playing=true; }
+          else{ music.pause(); if(rafId){ cancelAnimationFrame(rafId); rafId=null; } musicBtn.textContent='Play Music ▶️'; playing=false; }
+        } else if(window.ytReady && window.ytPlayer){
+          if(!playing){ window.ytPlayer.playVideo(); musicBtn.textContent='Pause Music ⏸️'; playing=true; if(!rafId) drawLights(); }
+          else{ window.ytPlayer.pauseVideo(); if(rafId){ cancelAnimationFrame(rafId); rafId=null; } musicBtn.textContent='Play Music ▶️'; playing=false; }
+        } else {
+          alert('Add MP3 source or wait for YouTube to be ready.');
+        }
+      }catch(e){ console.log(e); alert('Tap again if blocked by the browser.'); }
+    });
+
+    window.addEventListener('click', async function once(){
+      if((music.currentSrc || window.ytReady) && !playing){
+        try{ await tryPlay(); playing=true; musicBtn.textContent='Pause Music ⏸️'; }catch{}
+      }
+      window.removeEventListener('click', once);
+    }, {once:true});
+
+    // Celebrate button
+    document.getElementById('confettiBtn').addEventListener('click', popFireworks);
+
+    // Load YouTube Iframe API and init hidden player
+    function onYouTubeIframeAPIReady(){
+      window.ytPlayer = new YT.Player('yt-audio', {
+        height:'1', width:'1', videoId: YT_VIDEO_ID,
+        playerVars: { autoplay: 0, controls: 0, modestbranding: 1, loop: 1, playlist: YT_VIDEO_ID },
+        events: { onReady: ()=>{ window.ytReady=true; }, onStateChange: ()=>{} }
+      });
+    }
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+  </script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>
